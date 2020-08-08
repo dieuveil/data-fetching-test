@@ -7,10 +7,14 @@ function SearchBar(props) {
     const handleChange = (e) =>{
         setsearchInput(e.target.value)
     }
+
+    const handleClick = () =>{
+        console.log(searchInput)
+    }
     return (
         <div>
             <input type="text" placeholder="Search" value={searchInput} onChange={handleChange} />
-            <button>Search</button>
+            <button onClick={handleClick}>Search</button>
         </div>
     );
 }
