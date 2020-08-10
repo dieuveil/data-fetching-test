@@ -1,26 +1,23 @@
 import React, { useState, useEffect } from 'react';
-import Results from './Results'
 import axios from 'axios'
 
+
+const SearchBarStyle = {
+    "height": "30px",
+    "width": "25em"
+}
+
+const repoStyle = {
+    "font-size": "25px"
+}
 
 function SearchBar(props) {
     const [searchInput, setsearchInput] = useState("")
     const [repos, setRepos] = useState([])
 
     const handleChange = (e) =>{
-        //setsearchInput(e.target.value)
         setsearchInput(e.target.value.substr(0,20))
     };
-
-   /*const handleClick = async () => { 
-          try{
-            //const result = await axios(`https://api.github.com/repos/dieuveil/data-fetching-test`)
-            const result = await axios(`https://api.github.com/users/dieuveil/repos`)
-            setRepos(result.data)
-          }catch(err){
-            console.log(err)
-          }
-    };*/
 
     useEffect(()=>{
         axios
@@ -42,13 +39,11 @@ function SearchBar(props) {
    
     return (
         <div>
-            <input type="text" placeholder="Search" value={searchInput} onChange={handleChange} />
-            {/*<button onClick={handleClick}>Search</button>
-            <Results repos={repos}/>*/}
+            <input style={SearchBarStyle} type="text" placeholder="Search" value={searchInput} onChange={handleChange} />
             <ul>
                 {
                     filteredRepos.map(
-                    (repo)=><li key={repo.id}>{repo.name}</li>
+                    (repo)=><li key={repo.id} style={repoStyle}>{repo.name}</li>
                     )
                 }
             </ul>
